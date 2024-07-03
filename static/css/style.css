@@ -1,0 +1,27 @@
+.o_form_view .o_form_renderer {
+    max-width: 2600px;
+    display: flex;
+    flex-direction: column !important;
+}
+.o_form_view.o_xxl_form_view .o_form_sheet_bg {
+    overflow: auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    flex: 2 1 990px;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+.o-mail-ChatterContainer, .o-mail-Form-chatter {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    margin: 0 auto;
+    padding-bottom: 48px;
+    width: 100% !important;
+    max-width: 100% !important;
+}
