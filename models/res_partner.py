@@ -9,5 +9,5 @@ class ResPartner(models.Model):
 
     black_list = fields.Boolean(string='Client black listé',
                                        default='False')
-    created_in = fields.Many2one(string='Client créer sur',
+    created_in = fields.Many2one("res.company", string='Client créer sur',
                                        required='True')
