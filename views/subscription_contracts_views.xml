@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_download_arabic_pdf" model="ir.actions.server">
+            <field name="name">Télécharger le contrat de Dari Facile Plus</field>
+            <field name="model_id" ref="model_subscription_contracts"/>
+            <field name="binding_model_id" ref="dari_facile_customize.model_subscription_contracts"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = model.action_download_arabic_contract_pdf()
+            </field>
+        </record>
+
+        <record id="action_download_prelevement1_pdf" model="ir.actions.server">
+            <field name="name">Télécharger la demande de prélèvement 1</field>
+            <field name="model_id" ref="model_subscription_contracts"/>
+            <field name="binding_model_id" ref="dari_facile_customize.model_subscription_contracts"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = model.action_download_prelevement1_pdf()
+            </field>
+        </record>
+
+        <record id="action_download_prelevement2_pdf" model="ir.actions.server">
+            <field name="name">Télécharger la demande de prélèvement 2</field>
+            <field name="model_id" ref="model_subscription_contracts"/>
+            <field name="binding_model_id" ref="dari_facile_customize.model_subscription_contracts"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = model.action_download_prelevement2_pdf()
+            </field>
+        </record>
+    </data>
+</odoo>
