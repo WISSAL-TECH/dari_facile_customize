@@ -8,10 +8,10 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='vat']" position="after">
                     <field name="black_list"/>
+                    <field name="created_in"/>
                     <field name="arabic_name"/>
                     <field name="arabic_job"/>
                     <field name="arabic_birthdate"/>
-                    <field name="created_in"/>
                 </xpath>
             </field>
         </record>
