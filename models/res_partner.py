@@ -12,3 +12,5 @@ class ResPartner(models.Model):
     created_in = fields.Many2one("res.company", string='Client créer sur',
                                        required='True')
     arabic_name = fields.Char(string='الاسم بالعربية')
+    arabic_job = fields.Char(string='الوظيفة')
+    arabic_birthdate = fields.Date(string='تاريخ الميلاد')

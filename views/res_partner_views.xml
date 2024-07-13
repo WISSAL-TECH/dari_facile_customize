@@ -9,7 +9,8 @@
                 <xpath expr="//field[@name='vat']" position="after">
                     <field name="black_list"/>
                     <field name="arabic_name"/>
-
+                    <field name="arabic_job"/>
+                    <field name="arabic_birthdate"/>
                     <field name="created_in"/>
                 </xpath>
             </field>
