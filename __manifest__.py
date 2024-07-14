@@ -6,6 +6,7 @@
     'depends': ['base', 'sale','sales_contract_and_recurring_invoices'],
     'data': [
         'views/res_partner_views.xml',
+        'views/res_company_views.xml',
         'views/subscription_contracts_views.xml'
     ],
     'installable': True,
