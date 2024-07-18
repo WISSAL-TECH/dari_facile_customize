@@ -11,6 +11,11 @@ class ResPartner(models.Model):
                                        default='False')
     created_in = fields.Many2one("res.company", string='Client créer sur',
                                        required='True')
+    ccp = fields.Char(string="CCP", required=True, copy=False)
+
+    _sql_constraints = [
+        ('ccp_unique', 'unique(ccp)', 'The CCP must be unique.')
+    ]
     arabic_name = fields.Char(string='الاسم')
     arabic_job = fields.Char(string='الوظيفة')
     arabic_birthdate = fields.Date(string='تاريخ الميلاد')
