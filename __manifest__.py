@@ -7,7 +7,8 @@
     'data': [
         'views/res_partner_views.xml',
         'views/res_company_views.xml',
-        'views/subscription_contracts_views.xml'
+        'views/subscription_contracts_views.xml',
+        'views/account_move.xml'
     ],
     'installable': True,
     'application': False,
