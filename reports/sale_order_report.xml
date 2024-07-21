@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_sale_document_dari" inherit_id="sale.report_saleorder_document">
+        
+        <xpath expr="//th[@name='th_description']" position="before">
+            <th name="th_refrence" class="text-start"><span>Réference</span></th>
+        </xpath>
+
+
+        <xpath expr="//td[@name='td_name']" position="replace">
+            
+            <td name="td_reference"><span t-if="line.product_id.default_code" t-field="line.product_id.default_code" >GHDDDGRFD</span></td>
+            <td name="td_name"><span t-field="line.product_id.name">Bacon Burger</span></td>
+        </xpath>
+
+        
+    </template>
+</odoo>
