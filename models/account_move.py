@@ -10,7 +10,7 @@ class AccountMove(models.Model):
 
     reglement = fields.Selection([
         ('convention', 'Convention'),
-        ('facilite', 'Trait Facilité'),
+        ('facilite', 'Traite Facilité'),
         ],
         string="Réglement")
     recurring_period = fields.Selection([
@@ -19,6 +19,29 @@ class AccountMove(models.Model):
         ('24', '24'),
     ], string='Période')
     payment_dates = fields.One2many('account.move.payment.date', 'move_id', string='Payment Dates')
+    discount_amount = fields.Float(string='Discount Amount', compute='_compute_discount_amount', store=True)
+
+    @api.depends('recurring_period', 'amount_total', 'company_id.marge_12', 'company_id.marge_18',
+                 'company_id.marge_24')
+    def _compute_discount_amount(self):
+        for move in self:
+            if move.recurring_period == '12' and move.company_id.marge_12:
+                move.discount_amount = move.amount_total * (move.company_id.marge_12 / 100.0)
+            elif move.recurring_period == '18' and move.company_id.marge_18:
+                move.discount_amount = move.amount_total * (move.company_id.marge_18 / 100.0)
+            elif move.recurring_period == '24' and move.company_id.marge_24:
+                move.discount_amount = move.amount_total * (move.company_id.marge_24 / 100.0)
+            else:
+                move.discount_amount = 0.0
+
+    def apply_discount_on_total_amount(self):
+        for move in self:
+            if move.recurring_period == '12' and move.company_id.marge_12:
+                move.amount_total -= move.discount_amount
+            elif move.recurring_period == '18' and move.company_id.marge_18:
+                move.amount_total -= move.discount_amount
+            elif move.recurring_period == '24' and move.company_id.marge_24:
+                move.amount_total -= move.discount_amount
 
     @api.depends('recurring_period', 'amount_total', 'invoice_date')
     def compute_payment_dates(self):
@@ -49,7 +72,6 @@ class AccountMove(models.Model):
 
             move.payment_dates = payment_dates
             _logger.info("Computed payment dates: %s", move.payment_dates)
-
 class AccountMovePaymentDate(models.Model):
     _name = 'account.move.payment.date'
     _description = 'Payment Date for Account Move'

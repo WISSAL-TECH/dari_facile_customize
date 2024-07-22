@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='action_invoice_sent']" position="before">
                     <button string="Calculer la table d'échénaces" class="oe_highlight" type="object" name="compute_payment_dates"/>
+                    <button string="Calculer la remise de convention" class="oe_highlight" type="object" name="apply_discount_on_total_amount"/>
                 </xpath>
                 <xpath expr="//field[@name='invoice_date']" position="after">
                     <field name="reglement"/>
