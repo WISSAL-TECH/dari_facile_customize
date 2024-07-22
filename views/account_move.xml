@@ -6,13 +6,12 @@
             <field name="model">account.move</field>
             <field name="inherit_id" ref="account.view_move_form"/>
             <field name="arch" type="xml">
-                compute_payment_dates
+                <xpath expr="//button[@name='action_invoice_sent']" position="before">
+                    <button string="Calculer la table d'échénaces" class="oe_highlight" type="object" name="compute_payment_dates"/>
+                </xpath>
                 <xpath expr="//field[@name='invoice_date']" position="after">
                     <field name="reglement"/>
                     <field name="recurring_period"/>
-                </xpath>
-                <xpath expr="//button[@name='action_invoice_sent']" position="before">
-                    <button string="Calculer la table d'échénaces" class="oe_highlight" type="object" name="compute_payment_dates"/>
                 </xpath>
                 <xpath expr="//field[@name='invoice_line_ids']" position="after">
                     <field name="payment_dates" widget="one2many_list">
@@ -20,6 +19,7 @@
                             <field name="payment_date"/>
                             <field name="amount"/>
                             <field name="statut"/>
+
                         </tree>
                     </field>
                 </xpath>
