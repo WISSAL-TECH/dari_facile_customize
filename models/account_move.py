@@ -39,7 +39,8 @@ class AccountMove(models.Model):
             current_date = move.invoice_date
 
             for i in range(period):
-                next_payment_date = current_date + relativedelta(months=1)
+                # Move to the first day of the next month
+                next_payment_date = (current_date + relativedelta(months=1)).replace(day=1)
                 payment_dates.append((0, 0, {
                     'payment_date': next_payment_date,
                     'amount': amount_per_period,
