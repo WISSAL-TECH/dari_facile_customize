@@ -6,6 +6,12 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//widget[@name='web_ribbon']" position="after">
+                    <widget name="web_ribbon" title="Black listé" bg_color="text-bg-dark" invisible="not black_list"/>
+            
+                </xpath>
+
+                
                 <xpath expr="//sheet/group/group[1]" position="inside">
                 
                         <field name="ccp"/>
