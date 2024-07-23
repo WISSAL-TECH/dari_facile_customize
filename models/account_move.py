@@ -36,13 +36,19 @@ class AccountMove(models.Model):
 
     def apply_discount_on_total_amount(self):
         for move in self:
+            _logger.warning("applyiing discount")
+
             if move.recurring_period == '12' and move.company_id.marge_12:
-                move.amount_total = move.amount_total * (1+ move.company_id.marge_12 )
-                move.amount_total_signed += move.discount_amount
+                for line in move.invoice_line_ids:
+                    line.price_unit += (line.price_unit * (move.company_id.marge_12 ) / 100)
             elif move.recurring_period == '18' and move.company_id.marge_18:
-                move.amount_total += move.discount_amount
+                for line in move.invoice_line_ids:
+                    line.price_unit += (line.price_unit * (move.company_id.marge_18) / 100)
+
             elif move.recurring_period == '24' and move.company_id.marge_24:
-                move.amount_total += move.discount_amount
+                for line in move.invoice_line_ids:
+                    line.price_unit += (line.price_unit * (move.company_id.marge_24) / 100)
+
 
     @api.depends('recurring_period', 'amount_total', 'invoice_date')
     def compute_payment_dates(self):
