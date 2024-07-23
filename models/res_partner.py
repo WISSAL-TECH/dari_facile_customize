@@ -8,7 +8,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     black_list = fields.Boolean(string='Client black listé',default=False)
-    created_in = fields.Many2one("res.company", string='Client créer sur',required=True)
+    created_in = fields.Many2one("res.company", string='Client créer sur',required=True,default=lambda self: self.env.company)
     ccp = fields.Char(string="CCP", required=True, copy=False)
 
     _sql_constraints = [
