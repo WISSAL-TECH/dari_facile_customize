@@ -13,8 +13,11 @@
         </xpath>
 
 
-        <xpath expr="//table[@name='invoice_line_table']" position="after">
-            <table class="table table-sm table-borderless" name="payment_date_table">
+        <xpath expr="//div[@id='payment_term']" position="before">
+            <div id="table_echeance" >
+              
+            <table class="table table-sm table-borderless" name="payment_date_table" string="Table d'écheance">
+              
                 <thead>
                     <tr>
                         <th name="th_payment_date" class="text-start"><span>Date de paiement</span></th>
@@ -56,6 +59,7 @@
                     </t>
                 </tbody>
             </table>
+            </div>
              
         </xpath>
 
