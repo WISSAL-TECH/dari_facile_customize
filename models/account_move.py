@@ -50,23 +50,23 @@ class AccountMove(models.Model):
                     line.price_unit += (line.price_unit * (move.company_id.marge_24) / 100)
 
 
-    @api.depends('recurring_period', 'amount_total', 'invoice_date')
+    @api.depends('recurring_period', 'amount_total', 'invoice_date_due')
     def compute_payment_dates(self):
         for move in self:
             _logger.info("Processing move: %s", move)
-            _logger.info("Invoice Date: %s, Amount Total: %s, Recurring Period: %s", move.invoice_date,
+            _logger.info("Invoice Date: %s, Amount Total: %s, Recurring Period: %s", move.invoice_date_due,
                          move.amount_total, move.recurring_period)
             # Clear previous payment dates
             move.payment_dates.unlink()
 
-            if not move.recurring_period or not move.invoice_date or move.amount_total == 0:
+            if not move.recurring_period or not move.invoice_date_due or move.amount_total == 0:
                 _logger.warning("Missing data to compute payment dates")
                 continue
 
             period = int(move.recurring_period)
             amount_per_period = move.amount_total / period
             payment_dates = []
-            current_date = move.invoice_date
+            current_date = move.invoice_date_due
 
             for i in range(period):
                 # Move to the first day of the next month
