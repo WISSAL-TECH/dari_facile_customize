@@ -8,9 +8,9 @@
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='action_invoice_sent']" position="before">
                     <button string="Calculer l'échénaces" class="oe_highlight" type="object" name="compute_payment_dates"
-                            invisible='reglement == "convention"'/>
+                            invisible='reglement != "facilite"'/>
                     <button string="Appliquer la marge de convention" class="oe_highlight" type="object"
-                            name="apply_discount_on_total_amount"  invisible='reglement == "facilite"'/>
+                            name="apply_discount_on_total_amount"  invisible='reglement != "convention"'/>
                 </xpath>
                 <xpath expr="//field[@name='invoice_date']" position="after">
                     <field name="reglement"/>
