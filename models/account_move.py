@@ -86,4 +86,8 @@ class AccountMovePaymentDate(models.Model):
     move_id = fields.Many2one('account.move', string='Account Move', required=True)
     payment_date = fields.Date(string='Date de paiement', required=True)
     amount = fields.Float(string='Montant', required=True)
-    statut = fields.Char(string='Statut')
+    statut = fields.Selection([
+        ('payed', 'Payé'),
+        ('not', 'Non payé'),
+        ],
+        string="Statut")

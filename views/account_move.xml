@@ -21,7 +21,7 @@
                         <tree editable="bottom">
                             <field name="payment_date"/>
                             <field name="amount"/>
-                            <field name="statut"/>
+                            <field name="statut" widget="badge"/>
                         </tree>
                     </field>
                 </xpath>
