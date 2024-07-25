@@ -3,3 +3,4 @@ from . import sale_order
 from . import subscription_contracts
 from . import res_company
 from . import account_move
+from . import product
