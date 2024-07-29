@@ -10,7 +10,7 @@ class ResPartner(models.Model):
 
     black_list = fields.Boolean(string='Client black listé',default=False)
     created_in = fields.Many2one("res.company", string='Client créer sur',required=True,default=lambda self: self.env.company)
-    ccp = fields.Float(string="CCP", required=True, copy=False)
+    ccp = fields.Integer(string="CCP", required=True, copy=False)
 
     _sql_constraints = [
         ('ccp_unique', 'unique(ccp)', 'Numéro de CCP doit être unique.')
