@@ -14,7 +14,7 @@
                 </xpath>
                 <xpath expr="//field[@name='invoice_date']" position="after">
                     <field name="reglement" readonly='state != "draft"'/>
-                    <field name="recurring_period" invisible='reglement != "facilite"' readonly='state != "draft"'/>
+                    <field name="recurring_period" readonly='state != "draft"'/>
                 </xpath>
                 <xpath expr="//page[@name='invoice_tab']" position="inside">
                     <field name="payment_dates" widget="one2many_list" invisible='reglement != "facilite"'>
