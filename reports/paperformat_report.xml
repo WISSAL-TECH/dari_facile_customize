@@ -19,7 +19,7 @@
               <field name="name">Custom Landscape A4</field>
               <field name="default" eval="True"/>
               <field name="format">A4</field>
-              <field name="orientation">landscape</field>
+              <field name="orientation">Landscape</field>
               <field name="margin_top">0</field>
               <field name="margin_bottom">0</field>
               <field name="margin_left">0</field>
