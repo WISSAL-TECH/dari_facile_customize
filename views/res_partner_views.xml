@@ -38,9 +38,6 @@
                         <field name="commune_arabic"/>
                     </group>
                 </xpath>
-                <xpath expr="//field[@name=website]" position="attributes">
-                    <attribute invisible="1"/>
-                </xpath>
 
             </field>
         </record>
