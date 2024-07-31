@@ -17,7 +17,7 @@ class AccountMove(models.Model):
         ('12', '12'),
         ('18', '18'),
         ('24', '24'),
-    ], string='Période')
+    ], string='Période', default='18')
     payment_dates = fields.One2many('account.move.payment.date', 'move_id', string='Payment Dates')
     discount_amount = fields.Float(string='Discount Amount', compute='_compute_discount_amount', store=True)
 
