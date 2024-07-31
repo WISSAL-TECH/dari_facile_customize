@@ -12,9 +12,9 @@ class ResPartner(models.Model):
     created_in = fields.Many2one("res.company", string='Client créer sur',required=True,default=lambda self: self.env.company)
     ccp = fields.Integer(string="CCP", required=True, copy=False)
     start_date = fields.Selection([
-        ('1', 'Le 1er'),
-        ('13', 'Le 13'),
-        ('17', 'Le 17'),
+        ('1', 'Le 1er du mois'),
+        ('13', 'Le 13 du mois'),
+        ('17', 'Le 17 du mois'),
     ], string="Date de début de prélèvement")
     surname = fields.Char('Prénom')
     num_card = fields.Integer(string="Numéro de carte nationale/Numéro de permis")
@@ -23,8 +23,11 @@ class ResPartner(models.Model):
         ('ccp_unique', 'unique(ccp)', 'Numéro de CCP doit être unique.')
     ]
     arabic_name = fields.Char(string='الاسم')
-    arabic_job = fields.Char(string='الوظيفة')
+    arabic_job = fields.Char(string='المهنة')
     arabic_birthdate = fields.Date(string='تاريخ الميلاد')
+    street_arabic = fields.Char(string="العنوان")
+    wilaya_arabic = fields.Char(string="الولاية")
+    commune_arabic = fields.Char(string="البلدية")
     def _check_ccp_length(self, vals):
         ccp = vals.get('ccp')
         if ccp and len(ccp) != 21:

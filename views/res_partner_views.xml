@@ -25,7 +25,17 @@
                     <field name="arabic_name"/>
                     <field name="arabic_job"/>
                     <field name="arabic_birthdate"/>
+                </xpath>
+                <xpath expr="//sheet/group/group[1]" position="after">
+                    <group>
 
+                    <field name="arabic_name"/>
+                    <field name="arabic_job"/>
+                    <field name="arabic_birthdate"/>
+                        <field name="street"/>
+                        <field name="wilaya"/>
+                        <field name="commune"/>
+                    </group>
                 </xpath>
             </field>
         </record>
