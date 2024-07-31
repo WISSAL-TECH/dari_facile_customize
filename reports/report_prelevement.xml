@@ -35,7 +35,7 @@
                             font-size: 30px !important;
                         }
                     </style>
-                    <div style="position:absolute;top: 50mm;left:69.5mm;">
+                    <div style="position:absolute;top: 50mm;left:69.2mm;">
                         <t t-if="o.partner_id and o.partner_id.name">
                             <t t-foreach="o.partner_id.name" t-as="alphabet">
                                 <span t-esc="alphabet" style="margin-left:6.5mm;" />
@@ -44,7 +44,16 @@
                         
                     </div>
 
-                    
+                    <div style="position:absolute;top: 71mm;left:69.2mm;">
+                        <t t-if="o.partner_id and o.partner_id.surname">
+                            <t t-foreach="o.partner_id.surname" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.5mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+
 
                     
                     
