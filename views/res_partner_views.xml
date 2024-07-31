@@ -11,14 +11,12 @@
 
                 </xpath>
                 <xpath expr="//field[@name='individual']" position="replace">
-                    <h1>
                         <field id="individual" options="{'line_breaks': False}" widget="text" class="text-break"
                                name="individual" default_focus="1" placeholder="Nom" invisible="not is_individual"
                                required="type == 'contact'"/>
                         <field id="surname" options="{'line_breaks': False}" widget="text" class="text-break"
                                name="surname" default_focus="1" placeholder="Prénom"
                                invisible="not is_individual" required="type == 'contact'"/>
-                    </h1>
                 </xpath>
 
                 <xpath expr="//sheet/group/group[1]" position="inside">
