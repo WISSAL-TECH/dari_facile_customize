@@ -10,20 +10,16 @@
                     <widget name="web_ribbon" title="Black listé" bg_color="text-bg-dark" invisible="not black_list"/>
 
                 </xpath>
-                <xpath expr="//field[@id='individual']" position="before">
-                    <field
-                            name="is_individual" invisible="1"/>
-                </xpath>
                 <xpath expr="//field[@id='individual']" position="replace">
                     <div class="o_row">
                         <div class="o_col col-6">
                             <field id="individual" options="{'line_breaks': False}" widget="text" class="text-break"
-                                   name="nom" default_focus="1" invisible="not is_individual" placeholder="Nom"
+                                   name="nom" default_focus="1" invisible="is_company" placeholder="Nom"
                                    required="type == 'contact'"/>
                         </div>
                         <div class="o_col col-6">
                             <field id="surname" options="{'line_breaks': False}" widget="text" class="text-break"
-                                   name="prenom" default_focus="1" invisible="not is_individual" placeholder="Prénom"
+                                   name="prenom" default_focus="1" invisible="is_company" placeholder="Prénom"
                                    required="type == 'contact'"/>
                         </div>
                     </div>
