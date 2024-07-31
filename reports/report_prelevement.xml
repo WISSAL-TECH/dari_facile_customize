@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="internal_layout">
+            <t t-if="not o" t-set="o" t-value="doc" />
+
+            <t t-if="not company">
+                <!-- Multicompany -->
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id" />
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()" />
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company" />
+                </t>
+            </t>
+
+            <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+                t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-out="0" />
+            </div>
+        </template>
+
+
+        <template id="report_prelevement_document">
+            <t t-call="dari_facile_customize.internal_layout" t-lang="ar_001">
+          
+                <div class="page"
+                    t-attf-style="background-image:url('dari_facile_customize/static/src/img/prelevement_01.jpg'); background-size:450mm 320mm; width:450mm; height:320mm;  ">
+                    <style>
+                        span{
+                            font-size: 30px !important;
+                        }
+                    </style>
+                    <div style="position:absolute;top: 50mm;left:69.5mm;">
+                        <t t-if="o.partner_id and o.partner_id.name">
+                            <t t-foreach="o.partner_id.name" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.5mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    
+
+                    
+                    
+                </div>
+
+                  
+                  
+            </t>
+        </template>
+
+        <template id="report_prelevement">
+            <t t-call="web.html_container">
+
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="dari_facile_customize.report_prelevement_document" />
+                </t>
+            </t>
+        </template>
+
+        
+        <record id="prelevement_report" model="ir.actions.report">
+            <field name="name">Demande de Prélèvement</field>
+            <field name="model">account.move</field>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">dari_facile_customize.report_prelevement</field>
+            <field name="report_file">dari_facile_customize.report_prelevement</field>
+            <!-- <field name="attachment">'contract_dari_facile.pdf'</field>
+            <field name="attachment_use">True</field> -->
+            <field name="binding_view_types">form</field>
+            <field name="paperformat_id" ref="dari_facile_customize.custom_landscape_format" />
+        </record>
+
+    </data>
+</odoo>

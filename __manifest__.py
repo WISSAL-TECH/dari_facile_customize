@@ -16,7 +16,8 @@
 
         'reports/paperformat_report.xml',
         # 'reports/report_layout.xml',
-        'reports/report_contract.xml'
+        'reports/report_contract.xml',
+        'reports/report_prelevement.xml'
 
     ],
     'installable': True,
