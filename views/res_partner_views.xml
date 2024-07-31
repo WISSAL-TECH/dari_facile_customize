@@ -10,9 +10,9 @@
                     <widget name="web_ribbon" title="Black listé" bg_color="text-bg-dark" invisible="not black_list"/>
 
                 </xpath>
-                <xpath expr="//field[@name='individual']" position="replace">
+                <xpath expr="//field[@id='individual']" position="replace">
                         <field id="individual" options="{'line_breaks': False}" widget="text" class="text-break"
-                               name="individual" default_focus="1" placeholder="Nom" invisible="not is_individual"
+                               name="name" default_focus="1" placeholder="Nom" invisible="not is_individual"
                                required="type == 'contact'"/>
                         <field id="surname" options="{'line_breaks': False}" widget="text" class="text-break"
                                name="surname" default_focus="1" placeholder="Prénom"
