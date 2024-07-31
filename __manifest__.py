@@ -12,7 +12,11 @@
         'security/ir.model.access.csv',
         'reports/account_move_report.xml',
         'reports/sale_order_report.xml',
-        'reports/stock_picking_report.xml'
+        'reports/stock_picking_report.xml',
+
+        'reports/paperformat_report.xml',
+        # 'reports/report_layout.xml',
+        'reports/report_contract.xml'
 
     ],
     'installable': True,

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="internal_layout">
+            <t t-if="not o" t-set="o" t-value="doc" />
+
+            <t t-if="not company">
+                <!-- Multicompany -->
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id" />
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()" />
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company" />
+                </t>
+            </t>
+
+            <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+                t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-out="0" />
+            </div>
+        </template>
+
+
+        <template id="report_dari_contract_document">
+            <t t-call="dari_facile_customize.internal_layout" t-lang="ar_001">
+          
+                <div class="page"
+                    t-attf-style="background-image:url('dari_facile_customize/static/src/img/contract_dari.jpg'); background-size:325mm 450mm; width:325mm; height:450mm;  ">
+                    <style>
+                        span{
+                            font-size: 25px !important;
+                        }
+                    </style>
+                    <div style="position:absolute;top: 96mm;left:170mm;">
+                        <span t-if="o.partner_id and o.partner_id.arabic_name" t-esc="o.partner_id.arabic_name" />
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 96mm;left:65mm;">
+                        <span t-if="o.partner_id and o.partner_id.arabic_birthdate" t-esc="o.partner_id.arabic_birthdate" />
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 108mm;left:240mm;">
+                        <span t-if="o.partner_id and o.partner_id.arabic_job" t-esc="o.partner_id.arabic_job" />
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 144mm;left:162mm;">
+                        <span t-if="o.recurring_period " t-esc="o.recurring_period" />
+                        
+                    </div>
+                    
+                </div>
+
+                  
+                  
+            </t>
+        </template>
+
+        <template id="report_dari_contract">
+            <t t-call="web.html_container">
+
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="dari_facile_customize.report_dari_contract_document" />
+                </t>
+            </t>
+        </template>
+
+        
+        <record id="dari_contract_report" model="ir.actions.report">
+            <field name="name">Contract Dari Facile +</field>
+            <field name="model">account.move</field>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">dari_facile_customize.report_dari_contract</field>
+            <field name="report_file">dari_facile_customize.report_dari_contract</field>
+            <!-- <field name="attachment">'contract_dari_facile.pdf'</field>
+            <field name="attachment_use">True</field> -->
+            <field name="binding_view_types">form</field>
+            <field name="paperformat_id" ref="dari_facile_customize.custom_format" />
+        </record>
+
+    </data>
+</odoo>
