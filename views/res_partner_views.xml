@@ -14,12 +14,12 @@
                     <div style="display: flex; align-items: center;">
                         <div style="flex: 1; padding-right: 10px;">
                             <field id="individual" options="{'line_breaks': False}" widget="text" class="text-break"
-                                   name="nom" default_focus="1" invisible="is_company" placeholder="Nom"
+                                   name="name" default_focus="1" invisible="is_company" placeholder="Nom"
                                    required="type == 'contact'"/>
                         </div>
                         <div style="flex: 1; padding-left: 10px;">
                             <field id="surname" options="{'line_breaks': False}" widget="text" class="text-break"
-                                   name="prenom" default_focus="1" invisible="is_company" placeholder="Prénom"
+                                   name="surname" default_focus="1" invisible="is_company" placeholder="Prénom"
                                    required="type == 'contact'"/>
                         </div>
                     </div>
