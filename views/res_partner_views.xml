@@ -18,6 +18,7 @@
                 <xpath expr="//sheet/group/group[1]" position="inside">
 
                     <field name="ccp"/>
+                    <field name="num_card"/>
                     <field name="start_date"/>
                     <field name="black_list"/>
                     <field name="created_in"/>

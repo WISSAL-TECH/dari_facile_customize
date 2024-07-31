@@ -17,6 +17,7 @@ class ResPartner(models.Model):
         ('17', 'Le 17'),
     ], string="Date de début de prélèvement")
     surname = fields.Char('Prénom')
+    num_card = fields.Integer(string="Numéro de carte nationale/Numéro de permis")
 
     _sql_constraints = [
         ('ccp_unique', 'unique(ccp)', 'Numéro de CCP doit être unique.')
