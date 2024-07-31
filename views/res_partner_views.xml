@@ -8,19 +8,23 @@
             <field name="arch" type="xml">
                 <xpath expr="//widget[@name='web_ribbon']" position="after">
                     <widget name="web_ribbon" title="Black listé" bg_color="text-bg-dark" invisible="not black_list"/>
-            
+
+                </xpath>
+                <xpath expr="//div//field[@name='parent_id']" position="after">
+                    <field name="prenom" placeholder="Prénom"/>
                 </xpath>
 
-                
+
                 <xpath expr="//sheet/group/group[1]" position="inside">
-                
-                        <field name="ccp"/>
-                        <field name="black_list"/>
-                        <field name="created_in"/>
-                        <field name="arabic_name"/>
-                        <field name="arabic_job"/>
-                        <field name="arabic_birthdate"/>
-                  
+
+                    <field name="ccp"/>
+                    <field name="start_date"/>
+                    <field name="black_list"/>
+                    <field name="created_in"/>
+                    <field name="arabic_name"/>
+                    <field name="arabic_job"/>
+                    <field name="arabic_birthdate"/>
+
                 </xpath>
             </field>
         </record>
