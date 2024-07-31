@@ -10,10 +10,16 @@
                     <widget name="web_ribbon" title="Black listé" bg_color="text-bg-dark" invisible="not black_list"/>
 
                 </xpath>
-                <xpath expr="//div//field[@name='parent_id']" position="after">
-                    <field name="surname" placeholder="Prénom" invisible="is_company"/>
+                <xpath expr="//h1//field[@name='individual']" position="replace">
+                    <h1>
+                        <field id="individual" options="{'line_breaks': False}" widget="text" class="text-break"
+                               name="individual" default_focus="1" placeholder="Nom" invisible="not is_individual"
+                               required="type == 'contact'"/>
+                        <field id="surname" options="{'line_breaks': False}" widget="text" class="text-break"
+                               name="surname" default_focus="1" placeholder="Prénom"
+                               invisible="not is_individual" required="type == 'contact'"/>
+                    </h1>
                 </xpath>
-
 
                 <xpath expr="//sheet/group/group[1]" position="inside">
 
@@ -34,6 +40,10 @@
                         <field name="commune_arabic"/>
                     </group>
                 </xpath>
+                <xpath expr="field[@name=website]" position="attributes">
+                    <attribute invisible="1"/>
+                </xpath>
+
             </field>
         </record>
     </data>
