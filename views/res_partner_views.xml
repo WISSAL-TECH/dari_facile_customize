@@ -11,7 +11,7 @@
 
                 </xpath>
                 <xpath expr="//div//field[@name='parent_id']" position="after">
-                    <field name="surname" placeholder="Prénom"/>
+                    <field name="surname" placeholder="Prénom" invisible="is_company"/>
                 </xpath>
 
 
