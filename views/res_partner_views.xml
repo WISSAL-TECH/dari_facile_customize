@@ -22,19 +22,16 @@
                     <field name="start_date"/>
                     <field name="black_list"/>
                     <field name="created_in"/>
-                    <field name="arabic_name"/>
-                    <field name="arabic_job"/>
-                    <field name="arabic_birthdate"/>
                 </xpath>
                 <xpath expr="//sheet/group/group[1]" position="after">
                     <group>
 
-                    <field name="arabic_name"/>
-                    <field name="arabic_job"/>
-                    <field name="arabic_birthdate"/>
-                        <field name="street"/>
-                        <field name="wilaya"/>
-                        <field name="commune"/>
+                        <field name="arabic_name"/>
+                        <field name="arabic_job"/>
+                        <field name="arabic_birthdate"/>
+                        <field name="street_arabic"/>
+                        <field name="wilaya_arabic"/>
+                        <field name="commune_arabic"/>
                     </group>
                 </xpath>
             </field>
