@@ -52,7 +52,7 @@ class AccountMove(models.Model):
                 for line in move.invoice_line_ids:
                     line.price_unit += (line.price_unit * (move.company_id.marge_24) / 100)
 
-    def round_to_nearest_hundred(amount):
+    def round_to_nearest_hundred(self, amount):
         """
         Round the amount according to the specified rules:
         - If the tens digit is less than 4, round down to the nearest hundred.
@@ -91,7 +91,7 @@ class AccountMove(models.Model):
             rounded_total = 0
 
             for i in range(period):
-                rounded_amount = round_to_nearest_hundred(amount_per_period)
+                rounded_amount = self.round_to_nearest_hundred(amount_per_period)
                 amount_per_period_rounded.append(rounded_amount)
                 rounded_total += rounded_amount
 
