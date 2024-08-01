@@ -53,6 +53,7 @@ class AccountMove(models.Model):
 
     @api.depends('recurring_period', 'amount_total', 'invoice_date_due')
     def compute_payment_dates(self):
+        self.apply_discount_on_total_amount()
         for move in self:
             _logger.info("Processing move: %s", move)
             _logger.info("Invoice Date: %s, Amount Total: %s, Recurring Period: %s", move.invoice_date_due,

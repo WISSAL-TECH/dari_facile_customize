@@ -9,12 +9,10 @@
                 <xpath expr="//button[@name='action_invoice_sent']" position="before">
                     <button string="Calculer l'échénaces" class="oe_highlight" type="object" name="compute_payment_dates"
                             invisible='reglement != "facilite" or state != "draft"' />
-                    <button string="Appliquer la marge de convention" class="oe_highlight" type="object"
-                            name="apply_discount_on_total_amount"  invisible='reglement != "convention" or state != "draft"'/>
                 </xpath>
                 <xpath expr="//field[@name='invoice_date']" position="after">
                     <field name="reglement" readonly='state != "draft"'/>
-                    <field name="recurring_period" readonly='state != "draft"'/>
+                    <field name="recurring_period" readonly='state != "draft"' invisible='reglement != "facilite" '/>
                 </xpath>
                 <xpath expr="//page[@name='invoice_tab']" position="inside">
                     <field name="payment_dates" widget="one2many_list" invisible='reglement != "facilite"'>
