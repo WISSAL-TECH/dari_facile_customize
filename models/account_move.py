@@ -99,8 +99,12 @@ class AccountMove(models.Model):
                     difference = total_amount - rounded_total
                     amount_per_period_rounded[i] += difference
 
-                # Move to the first day of the next month
-                next_payment_date = (current_date + relativedelta(months=1)).replace(day=1)
+                # Determine the next payment date
+                if current_date.day <= 25:
+                    next_payment_date = (current_date + relativedelta(months=1)).replace(day=1)
+                else:
+                    next_payment_date = (current_date + relativedelta(months=2)).replace(day=1)
+
                 payment_dates.append((0, 0, {
                     'payment_date': next_payment_date,
                     'amount': amount_per_period_rounded[i],
@@ -109,6 +113,7 @@ class AccountMove(models.Model):
 
             move.payment_dates = payment_dates
             _logger.info("Computed payment dates: %s", move.payment_dates)
+
 class AccountMovePaymentDate(models.Model):
     _name = 'account.move.payment.date'
     _description = 'Payment Date for Account Move'
