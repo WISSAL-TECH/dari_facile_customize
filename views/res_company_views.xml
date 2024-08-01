@@ -10,6 +10,13 @@
                     <field name="marge_12"/>
                     <field name="marge_18"/>
                     <field name="marge_24"/>
+                    <label for="ccp" string="Numéro CCP"/>
+                    <div class="o_row col-12" name="ccp">
+                        <field name="ccp" class="oe_inline col-8"/>
+                        <span class="oe_inline col-2">Clé</span>
+                        <field name="key_ccp" class="col-2"/>
+
+                    </div>
                 </xpath>
             </field>
         </record>
