@@ -50,6 +50,11 @@
                         
                     </div>
 
+                    <div style="position:absolute;top: 108mm;left:50mm;">
+                        <span t-if="o.partner_id and o.partner_id.num_card" t-esc="o.partner_id.num_card" />
+                        
+                    </div>
+
                     <div style="position:absolute;top: 144mm;left:162mm;">
                         <span t-if="o.recurring_period " t-esc="o.recurring_period" />
                         

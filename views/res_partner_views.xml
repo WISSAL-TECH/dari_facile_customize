@@ -28,7 +28,16 @@
 
                 <xpath expr="//sheet/group/group[1]" position="inside">
 
-                    <field name="ccp"/>
+                    <label for="ccp" string="Numéro CCP" />
+                    <div class="o_row col-12" name="ccp" >
+                        <field name="ccp" class="oe_inline col-8"/>
+                        <span class="oe_inline col-2"> Clé </span>
+                        <field name="key_ccp" class="col-2"/>
+        
+                    </div>
+
+                    
+
                     <field name="num_card"/>
                     <field name="start_date"/>
                     <field name="black_list"/>

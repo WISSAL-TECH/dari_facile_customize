@@ -10,14 +10,15 @@ class ResPartner(models.Model):
 
     black_list = fields.Boolean(string='Client black listé',default=False)
     created_in = fields.Many2one("res.company", string='Client créer sur',required=True,default=lambda self: self.env.company)
-    ccp = fields.Integer(string="CCP", required=True, copy=False)
+    ccp = fields.Char(string="CCP", required=True, copy=False)
+    key_ccp = fields.Char(string="Clé", required=True, copy=False)
     start_date = fields.Selection([
         ('1', 'Le 1er du mois'),
         ('13', 'Le 13 du mois'),
         ('17', 'Le 17 du mois'),
     ], string="Date de début de prélèvement")
     surname = fields.Char('Prénom')
-    num_card = fields.Integer(string="Numéro de carte nationale/Numéro de permis")
+    num_card = fields.Char(string="Numéro de carte nationale/Numéro de permis")
 
     _sql_constraints = [
         ('ccp_unique', 'unique(ccp)', 'Numéro de CCP doit être unique.')
@@ -28,7 +29,16 @@ class ResPartner(models.Model):
     street_arabic = fields.Char(string="العنوان")
     wilaya_arabic = fields.Char(string="الولاية")
     commune_arabic = fields.Char(string="البلدية")
-    def _check_ccp_length(self, vals):
-        ccp = vals.get('ccp')
-        if ccp and len(ccp) != 21:
-            raise UserError("Veuillez vérifier le numéro CCP.")
+
+    @api.constrains('ccp','key')
+    def _check_ccp_length(self):
+        if self.ccp and (len(self.ccp) != 8 or not self.ccp.isdigit()):
+            raise UserError("Le numéro de CCP doit comporter exactement 8 chiffres.")
+        if self.key_ccp and (len(self.key_ccp) != 2 or not self.key_ccp.isdigit()):
+            raise UserError("La clé de CCP doit comporter exactement 2 chiffres.")
+
+    @api.constrains('num_card')
+    def _check_num_card(self):
+        if self.num_card and  not self.num_card.isdigit():
+            raise UserError("Le numéro de carte nationale/Numéro de permis doit être des chiffres.")
+     
