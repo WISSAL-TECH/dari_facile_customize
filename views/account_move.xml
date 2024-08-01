@@ -15,6 +15,7 @@
 
                     <field name="recurring_period" readonly='state != "draft"'/>
                     <field name="payment_dates_amount" invisible="1"/>
+                    <field name="payment_dates_first_date" invisible="1"/>
 
                 </xpath>
                 <xpath expr="//page[@name='invoice_tab']" position="inside">

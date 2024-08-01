@@ -27,14 +27,16 @@
 
         <template id="report_prelevement_document">
             <t t-call="dari_facile_customize.internal_layout" t-lang="ar_001">
-          
-                <div class="page"
+      
+    <!-- Prelevement de 13 et 01 ################################################################## -->  
+                <div class="page" t-if="o.partner_id and o.partner_id.start_date in ['1','13']"
                     t-attf-style="background-image:url('dari_facile_customize/static/src/img/prelevement_01.jpg'); background-size:450mm 320mm; width:450mm; height:320mm;  ">
                     <style>
                         span{
                             font-size: 30px !important;
                         }
                     </style>
+                    <!-- Name -->
                     <div style="position:absolute;top: 50mm;left:68mm;">
                         <t t-if="o.partner_id and o.partner_id.name">
                             <t t-foreach="o.partner_id.name" t-as="alphabet">
@@ -44,6 +46,16 @@
                         
                     </div>
 
+                    <div style="position:absolute;top: 50mm;left:284mm;">
+                        <t t-if="o.partner_id and o.partner_id.name">
+                            <t t-foreach="o.partner_id.name" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <!-- Surname -->
                     <div style="position:absolute;top: 71mm;left:68mm;">
                         <t t-if="o.partner_id and o.partner_id.surname">
                             <t t-foreach="o.partner_id.surname" t-as="alphabet">
@@ -53,6 +65,16 @@
                         
                     </div>
 
+                    <div style="position:absolute;top: 71mm;left:284mm;">
+                        <t t-if="o.partner_id and o.partner_id.surname">
+                            <t t-foreach="o.partner_id.surname" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <!-- CCP -->
                     <div style="position:absolute;top: 92mm;left:68mm;">
                         <t t-if="o.partner_id and o.partner_id.ccp">
                             <t t-foreach="o.partner_id.ccp" t-as="alphabet">
@@ -71,6 +93,306 @@
                         
                     </div>
 
+                    <div style="position:absolute;top: 92mm;left:284mm;">
+                        <t t-if="o.partner_id and o.partner_id.ccp">
+                            <t t-foreach="o.partner_id.ccp" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:8mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 91mm;left:401mm;">
+                        <t t-if="o.partner_id and o.partner_id.key_ccp">
+                            <t t-foreach="o.partner_id.key_ccp" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+                    <!-- jour Prelevement -->
+                    <div style="position:absolute;top: 131mm;left:68mm;">
+                        <t t-if="o.partner_id and o.partner_id.start_date == '1'">
+                            
+                            <span  style="margin-left:6.7mm;" >0</span >
+                            <span  style="margin-left:6.7mm;" >1</span >
+                            
+                        </t>
+                        <t t-if="o.partner_id and o.partner_id.start_date == '13'">
+                            
+                            <span  style="margin-left:6.7mm;" >1</span >
+                            <span  style="margin-left:6.7mm;" >3</span >
+                            
+                        </t>
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 131mm;left:284mm;">
+                        <t t-if="o.partner_id and o.partner_id.start_date == '1'">
+                            
+                            <span  style="margin-left:6.7mm;" >0</span >
+                            <span  style="margin-left:6.7mm;" >1</span >
+                            
+                        </t>
+                        <t t-if="o.partner_id and o.partner_id.start_date == '13'">
+                            
+                            <span  style="margin-left:6.7mm;" >1</span >
+                            <span  style="margin-left:6.7mm;" >3</span >
+                            
+                        </t>
+                        
+                    </div>
+                    <!-- date -->
+                    
+                    <t t-if="o.payment_dates_first_date ">
+                        <t t-set="pay_day" t-value="str(o.payment_dates_first_date.strftime('%d'))"/>
+                        <t t-set="pay_month" t-value="str(o.payment_dates_first_date.strftime('%m'))"/>
+                        <t t-set="pay_year" t-value="str(o.payment_dates_first_date.strftime('%Y'))"/>
+                        <div style="position:absolute;top: 151mm;left:68mm;">
+                            <t t-foreach="pay_day" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+
+                        <div style="position:absolute;top: 151mm;left:103mm;">
+                            <t t-foreach="pay_month" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+
+                        <div style="position:absolute;top: 151mm;left:136mm;">
+                            <t t-foreach="pay_year" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+
+
+                        <div style="position:absolute;top: 151mm;left:284mm;">
+                            <t t-foreach="pay_day" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+
+                        <div style="position:absolute;top: 151mm;left:319mm;">
+                            <t t-foreach="pay_month" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+
+                        <div style="position:absolute;top: 151mm;left:352mm;">
+                            <t t-foreach="pay_year" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+                    </t>
+
+                    <!-- Amount -->
+                    <div style="position:absolute;top: 171mm;left:68mm;">
+                        <t t-if="o.reglement == 'facilite' and o.payment_dates_amount ">
+                            <t t-foreach="str('{:010.2f}'.format(o.payment_dates_amount).replace(',', ' '))" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 171mm;left:284mm;">
+                        <t t-if="o.reglement == 'facilite' and o.payment_dates_amount ">
+                            <t t-foreach="str('{:010.2f}'.format(o.payment_dates_amount).replace(',', ' '))" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <!-- Period -->
+                    <div style="position:absolute;top: 191mm;left:68mm;">
+                        <t t-if="o.recurring_period ">
+                            <t t-foreach="str(o.recurring_period)" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 191mm;left:284mm;">
+                        <t t-if="o.recurring_period ">
+                            <t t-foreach="str(o.recurring_period)" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+                     
+                </div>
+
+    <!-- Prelevement de 17 ######################################################################### -->
+
+                <div class="page" t-if="o.partner_id and o.partner_id.start_date in ['17']"
+                    t-attf-style="background-image:url('dari_facile_customize/static/src/img/prelevement_17.jpg'); background-size:450mm 320mm; width:450mm; height:320mm;  ">
+                    <style>
+                        span{
+                            font-size: 30px !important;
+                        }
+                    </style>
+                    <!-- Name -->
+                    <div style="position:absolute;top: 50mm;left:68mm;">
+                        <t t-if="o.partner_id and o.partner_id.name">
+                            <t t-foreach="o.partner_id.name" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 50mm;left:284mm;">
+                        <t t-if="o.partner_id and o.partner_id.name">
+                            <t t-foreach="o.partner_id.name" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <!-- Surname -->
+                    <div style="position:absolute;top: 71mm;left:68mm;">
+                        <t t-if="o.partner_id and o.partner_id.surname">
+                            <t t-foreach="o.partner_id.surname" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 71mm;left:284mm;">
+                        <t t-if="o.partner_id and o.partner_id.surname">
+                            <t t-foreach="o.partner_id.surname" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <!-- CCP -->
+                    <div style="position:absolute;top: 92mm;left:68mm;">
+                        <t t-if="o.partner_id and o.partner_id.ccp">
+                            <t t-foreach="o.partner_id.ccp" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:8mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 91mm;left:185mm;">
+                        <t t-if="o.partner_id and o.partner_id.key_ccp">
+                            <t t-foreach="o.partner_id.key_ccp" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 92mm;left:284mm;">
+                        <t t-if="o.partner_id and o.partner_id.ccp">
+                            <t t-foreach="o.partner_id.ccp" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:8mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 91mm;left:401mm;">
+                        <t t-if="o.partner_id and o.partner_id.key_ccp">
+                            <t t-foreach="o.partner_id.key_ccp" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+                    
+                    <!-- date -->
+                    
+                    <t t-if="o.payment_dates_first_date ">
+                        <t t-set="pay_day" t-value="str(o.payment_dates_first_date.strftime('%d'))"/>
+                        <t t-set="pay_month" t-value="str(o.payment_dates_first_date.strftime('%m'))"/>
+                        <t t-set="pay_year" t-value="str(o.payment_dates_first_date.strftime('%Y'))"/>
+                        <div style="position:absolute;top: 151mm;left:68mm;">
+                            <t t-foreach="pay_day" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+
+                        <div style="position:absolute;top: 151mm;left:103mm;">
+                            <t t-foreach="pay_month" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+
+                        <div style="position:absolute;top: 151mm;left:136mm;">
+                            <t t-foreach="pay_year" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+
+
+                        <div style="position:absolute;top: 151mm;left:284mm;">
+                            <t t-foreach="pay_day" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+
+                        <div style="position:absolute;top: 151mm;left:319mm;">
+                            <t t-foreach="pay_month" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+
+                        <div style="position:absolute;top: 151mm;left:352mm;">
+                            <t t-foreach="pay_year" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </div>
+                    </t>
+
+                    <!-- Amount -->
+                    <div style="position:absolute;top: 171mm;left:68mm;">
+                        <t t-if="o.reglement == 'facilite' and o.payment_dates_amount ">
+                            <t t-foreach="str('{:010.2f}'.format(o.payment_dates_amount).replace(',', ' '))" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 171mm;left:284mm;">
+                        <t t-if="o.reglement == 'facilite' and o.payment_dates_amount ">
+                            <t t-foreach="str('{:010.2f}'.format(o.payment_dates_amount).replace(',', ' '))" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <!-- Period -->
+                    <div style="position:absolute;top: 191mm;left:68mm;">
+                        <t t-if="o.recurring_period ">
+                            <t t-foreach="str(o.recurring_period)" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 191mm;left:284mm;">
+                        <t t-if="o.recurring_period ">
+                            <t t-foreach="str(o.recurring_period)" t-as="alphabet">
+                                <span t-esc="alphabet" style="margin-left:6.7mm;" />
+                            </t>
+                        </t>
+                        
+                    </div>
+                        
+                    
 
 
                     

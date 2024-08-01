@@ -22,7 +22,7 @@ class AccountMove(models.Model):
     ], string='Période', default='18')
 
     payment_dates_amount = fields.Float()
-    payment_dates_first_month = fields.Char()
+    payment_dates_first_date = fields.Date()
     payment_dates = fields.One2many('account.move.payment.date', 'move_id', string='Payment Dates')
     discount_amount = fields.Float(string='Discount Amount', compute='_compute_discount_amount', store=True)
 
@@ -64,7 +64,7 @@ class AccountMove(models.Model):
             # Clear previous payment dates
             move.payment_dates.unlink()
             move.payment_dates_amount = 0
-            move.payment_dates_first_month = False
+            move.payment_dates_first_date = False
 
             if not move.recurring_period or not move.invoice_date_due or move.amount_total == 0:
                 _logger.warning("Missing data to compute payment dates")
@@ -86,8 +86,8 @@ class AccountMove(models.Model):
             amount_per_period_rounded = []
             rounded_total = 0
 
-            move.payment_dates_first_month = self.calculate_next_payment_date(current_date, start_date).month
-
+            move.payment_dates_first_date = self.calculate_next_payment_date(current_date, start_date)
+            move.payment_dates_amount = self.round_to_nearest_hundred(amount_per_period)
             for i in range(period):
                 rounded_amount = self.round_to_nearest_hundred(amount_per_period)
                 amount_per_period_rounded.append(rounded_amount)
@@ -106,7 +106,7 @@ class AccountMove(models.Model):
                 current_date = next_payment_date
 
             move.payment_dates = payment_dates
-            move.payment_dates_amount = amount_per_period
+            
             _logger.info("Computed payment dates: %s", move.payment_dates)
 
     def round_to_nearest_hundred(self, amount):

@@ -93,10 +93,19 @@
                         </t>
                     </div>
 
+                    <div style="position:absolute;top: 156mm;left:70mm;">
+                       <t t-if="o.env.company and o.env.company.ccp " >
+                            <t t-set="ccp_cmp" t-value="str(o.env.company.ccp + o.env.company.key_ccp)"/>
+                            <span  t-esc="ccp_cmp" />
+                        </t>
+                    </div>
+
                     <div style="position:absolute;top: 168mm;left:258mm;">
-                       
-                        <span t-if="o.reglement == 'facilite' and o.payment_dates_first_month " t-esc="o.payment_dates_first_month" />
-                        
+                        <t t-if="o.reglement == 'facilite' and o.payment_dates_first_date " >
+                            <t t-set="pay_month" t-value="str(o.payment_dates_first_date.month)"/>
+                            <span  t-esc="pay_month" />
+                        </t>
+
                     </div>
                     
                 </div>
