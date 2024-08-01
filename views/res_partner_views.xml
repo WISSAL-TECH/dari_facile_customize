@@ -39,6 +39,7 @@
                     
 
                     <field name="num_card"/>
+                    <field name="date_card"/>
                     <field name="start_date"/>
                     <field name="black_list"/>
                     <field name="created_in"/>

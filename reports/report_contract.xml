@@ -50,13 +50,52 @@
                         
                     </div>
 
-                    <div style="position:absolute;top: 108mm;left:50mm;">
+                    <div style="position:absolute;top: 108mm;left:60mm;">
                         <span t-if="o.partner_id and o.partner_id.num_card" t-esc="o.partner_id.num_card" />
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 120mm;left:220mm;">
+                        <span t-if="o.partner_id and o.partner_id.date_card" t-esc="o.partner_id.date_card" />
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 120mm;left:140mm;">
+                        <span t-if="o.partner_id and o.partner_id.commune_arabic" t-esc="o.partner_id.commune_arabic" />
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 120mm;left:60mm;">
+                        <span t-if="o.partner_id and o.partner_id.wilaya_arabic" t-esc="o.partner_id.wilaya_arabic" />
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 132mm;left:120mm;">
+                        <span t-if="o.partner_id and o.partner_id.street_arabic" t-esc="o.partner_id.street_arabic" />
                         
                     </div>
 
                     <div style="position:absolute;top: 144mm;left:162mm;">
                         <span t-if="o.recurring_period " t-esc="o.recurring_period" />
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 144mm;left:70mm;">
+                       
+                        <span t-if="o.reglement == 'facilite' and o.payment_dates_amount " t-esc="'{0:,.2f}'.format(o.payment_dates_amount).replace(',', ' ')" />
+                        
+                    </div>
+
+                    <div style="position:absolute;top: 156mm;left:170mm;">
+                       <t t-if="o.partner_id " >
+                            <t t-set="ccp" t-value="str(o.partner_id.ccp + o.partner_id.key_ccp)"/>
+                            <span  t-esc="ccp" />
+                        </t>
+                    </div>
+
+                    <div style="position:absolute;top: 168mm;left:258mm;">
+                       
+                        <span t-if="o.reglement == 'facilite' and o.payment_dates_first_month " t-esc="o.payment_dates_first_month" />
                         
                     </div>
                     
