@@ -52,18 +52,6 @@ class AccountMove(models.Model):
                 for line in move.invoice_line_ids:
                     line.price_unit += (line.price_unit * (move.company_id.marge_24) / 100)
 
-    def round_to_nearest_hundred(self, amount):
-        """
-        Round the amount according to the specified rules:
-        - If the tens digit is less than 4, round down to the nearest hundred.
-        - If the tens digit is 4 or more, round up to the nearest hundred.
-        """
-        tens = int((amount % 100) / 10)
-        if tens < 4:
-            rounded_amount = math.floor(amount / 100) * 100
-        else:
-            rounded_amount = math.ceil(amount / 100) * 100
-        return rounded_amount
     @api.depends('recurring_period', 'amount_total', 'invoice_date_due')
     def compute_payment_dates(self):
         self.apply_discount_on_total_amount()
@@ -83,6 +71,10 @@ class AccountMove(models.Model):
             payment_dates = []
             current_date = move.invoice_date_due
 
+            # Get start date from the partner
+            start_date = int(move.partner_id.start_date)
+            _logger.info("Using start date: %s", start_date)
+
             # Calculate base amount per period
             amount_per_period = total_amount / period
 
@@ -99,12 +91,8 @@ class AccountMove(models.Model):
                     difference = total_amount - rounded_total
                     amount_per_period_rounded[i] += difference
 
-                # Determine the next payment date
-                if current_date.day <= 25:
-                    next_payment_date = (current_date + relativedelta(months=1)).replace(day=1)
-                else:
-                    next_payment_date = (current_date + relativedelta(months=2)).replace(day=1)
-
+                # Determine the next payment date based on start_date
+                next_payment_date = self.calculate_next_payment_date(current_date, start_date)
                 payment_dates.append((0, 0, {
                     'payment_date': next_payment_date,
                     'amount': amount_per_period_rounded[i],
@@ -113,6 +101,37 @@ class AccountMove(models.Model):
 
             move.payment_dates = payment_dates
             _logger.info("Computed payment dates: %s", move.payment_dates)
+
+    def round_to_nearest_hundred(self, amount):
+        """
+        Round the amount according to the specified rules:
+        - If the tens digit is less than 4, round down to the nearest hundred.
+        - If the tens digit is 4 or more, round up to the nearest hundred.
+        """
+        tens = int((amount % 100) / 10)
+        if tens < 4:
+            rounded_amount = math.floor(amount / 100) * 100
+        else:
+            rounded_amount = math.ceil(amount / 100) * 100
+        return rounded_amount
+
+    def calculate_next_payment_date(self, current_date, start_date):
+        """
+        Calculate the next payment date based on the current date and the specified start date.
+        """
+        # Determine the day of the current date
+        current_day = current_date.day
+
+        if current_day <= 25:
+            # Move to the specified day in the next month
+            next_payment_date = current_date + relativedelta(months=1)
+        else:
+            # Move to the specified day in the month after next
+            next_payment_date = current_date + relativedelta(months=2)
+
+        # Adjust the day to the start_date provided by the partner
+        next_payment_date = next_payment_date.replace(day=start_date)
+        return next_payment_date
 
 class AccountMovePaymentDate(models.Model):
     _name = 'account.move.payment.date'
