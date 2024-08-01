@@ -52,7 +52,18 @@ class AccountMove(models.Model):
                 for line in move.invoice_line_ids:
                     line.price_unit += (line.price_unit * (move.company_id.marge_24) / 100)
 
-
+    def round_to_nearest_hundred(amount):
+        """
+        Round the amount according to the specified rules:
+        - If the tens digit is less than 4, round down to the nearest hundred.
+        - If the tens digit is 4 or more, round up to the nearest hundred.
+        """
+        tens = int((amount % 100) / 10)
+        if tens < 4:
+            rounded_amount = math.floor(amount / 100) * 100
+        else:
+            rounded_amount = math.ceil(amount / 100) * 100
+        return rounded_amount
     @api.depends('recurring_period', 'amount_total', 'invoice_date_due')
     def compute_payment_dates(self):
         self.apply_discount_on_total_amount()
@@ -80,7 +91,7 @@ class AccountMove(models.Model):
             rounded_total = 0
 
             for i in range(period):
-                rounded_amount = self.round_to_nearest_hundred(amount_per_period)
+                rounded_amount = round_to_nearest_hundred(amount_per_period)
                 amount_per_period_rounded.append(rounded_amount)
                 rounded_total += rounded_amount
 
@@ -98,19 +109,6 @@ class AccountMove(models.Model):
 
             move.payment_dates = payment_dates
             _logger.info("Computed payment dates: %s", move.payment_dates)
-
-    def round_to_nearest_hundred(amount):
-        """
-        Round the amount according to the specified rules:
-        - If the tens digit is less than 4, round down to the nearest hundred.
-        - If the tens digit is 4 or more, round up to the nearest hundred.
-        """
-        tens = int((amount % 100) / 10)
-        if tens < 4:
-            rounded_amount = math.floor(amount / 100) * 100
-        else:
-            rounded_amount = math.ceil(amount / 100) * 100
-        return rounded_amount
 class AccountMovePaymentDate(models.Model):
     _name = 'account.move.payment.date'
     _description = 'Payment Date for Account Move'
