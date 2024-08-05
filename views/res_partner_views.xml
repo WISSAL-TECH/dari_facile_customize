@@ -41,20 +41,20 @@
                 </xpath>
                 <xpath expr="//sheet/group/group[1]" position="after">
                     <group string="Information de Carte Nationale/Permis">
-                        <field name="num_card" required="is_company"/>
-                        <field name="date_card" required="is_company"/>
-                        <field name="wilaya_arabic" required="is_company"/>
-                        <field name="commune_arabic" required="is_company"/>
+                        <field name="num_card" invisible="!is_company"/>
+                        <field name="date_card" required="!is_company"/>
+                        <field name="wilaya_arabic" required="!is_company"/>
+                        <field name="commune_arabic" required="!is_company"/>
 
 
                     </group>
 
-                    <group string="Information en arabe ">
-                        <field name="arabic_name" required="is_company"/>
-                        <field name="arabic_surname" required="is_company"/>
-                        <field name="arabic_job" required="is_company"/>
-                        <field name="arabic_birthdate" required="is_company"/>
-                        <field name="street_arabic" required="is_company"/>
+                    <group string="Information en arabe">
+                        <field name="arabic_name" required="!is_company"/>
+                        <field name="arabic_surname" required="!is_company"/>
+                        <field name="arabic_job" required="!is_company"/>
+                        <field name="arabic_birthdate" required="!is_company"/>
+                        <field name="street_arabic" required="!is_company"/>
 
                     </group>
                 </xpath>
