@@ -35,26 +35,26 @@
                         <field name="key_ccp" class="col-2"/>
 
                     </div>
-                    <field name="start_date" invisible="individual"/>
+                    <field name="start_date"/>
                     <field name="black_list"/>
                     <field name="created_in"/>
                 </xpath>
                 <xpath expr="//sheet/group/group[1]" position="after">
                     <group string="Information de Carte Nationale/Permis">
-                        <field name="num_card" invisible="individual"/>
-                        <field name="date_card" required="individual"/>
-                        <field name="wilaya_arabic" required="individual"/>
-                        <field name="commune_arabic" required="individual"/>
+                        <field name="num_card" required="not is_company"/>
+                        <field name="date_card" required="not is_company"/>
+                        <field name="wilaya_arabic" required="not is_company"/>
+                        <field name="commune_arabic" required="not is_company"/>
 
 
                     </group>
 
                     <group string="Information en arabe">
-                        <field name="arabic_name" required="individual"/>
-                        <field name="arabic_surname" required="individual"/>
-                        <field name="arabic_job" required="individual"/>
-                        <field name="arabic_birthdate" required="individual"/>
-                        <field name="street_arabic" required="individual"/>
+                        <field name="arabic_name" required="not is_company"/>
+                        <field name="arabic_surname" required="not is_company"/>
+                        <field name="arabic_job" required="not is_company"/>
+                        <field name="arabic_birthdate" required="not is_company"/>
+                        <field name="street_arabic" required="not is_company"/>
 
                     </group>
                 </xpath>
