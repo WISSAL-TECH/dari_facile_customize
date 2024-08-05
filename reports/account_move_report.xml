@@ -6,6 +6,14 @@
              <th name="th_refrence" class="text-start"><span>Réference</span></th>
         </xpath>
 
+        <xpath expr="//th[@name='th_taxes']" position="attributes">
+             <attribute name="t-if">o.invoice_line_ids.mapped('tax_ids')</attribute>
+        </xpath>
+
+        <xpath expr="//td[@name='td_taxes']" position="attributes">
+             <attribute name="t-if">o.invoice_line_ids.mapped('tax_ids')</attribute>
+        </xpath>
+
 
         <xpath expr="//td[@name='account_invoice_line_name']" position="replace">
              <td name="td_reference"><span t-if="line.product_id.default_code" t-field="line.product_id.default_code" t-options="{'widget': 'text'}">GHDDDGRFD</span></td>
