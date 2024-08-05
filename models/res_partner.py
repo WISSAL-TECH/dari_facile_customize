@@ -18,13 +18,14 @@ class ResPartner(models.Model):
         ('17', 'Le 17 du mois'),
     ], string="Date de début de prélèvement")
     surname = fields.Char('Prénom')
-    num_card = fields.Char(string="Numéro de carte nationale/Numéro de permis")
-    date_card = fields.Date(string="Date de carte nationale/Numéro de permis")
+    num_card = fields.Char(string="Numéro de Carte nationale/Permis")
+    date_card = fields.Date(string="Date de Carte nationale/Permis")
 
     _sql_constraints = [
         ('ccp_unique', 'unique(ccp)', 'Numéro de CCP doit être unique.')
     ]
     arabic_name = fields.Char(string='الاسم')
+    arabic_surname = fields.Char(string='اللقب')
     arabic_job = fields.Char(string='المهنة')
     arabic_birthdate = fields.Date(string='تاريخ الميلاد')
     street_arabic = fields.Char(string="العنوان")

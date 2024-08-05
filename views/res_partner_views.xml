@@ -35,23 +35,29 @@
                         <field name="key_ccp" class="col-2"/>
         
                     </div>
-
-                    
-
-                    <field name="num_card"/>
-                    <field name="date_card"/>
                     <field name="start_date"/>
                     <field name="black_list"/>
                     <field name="created_in"/>
-                    <field name="arabic_name"/>
-                    <field name="arabic_job"/>
-                    <field name="arabic_birthdate"/>
-                    <field name="street_arabic"/>
-                    <field name="wilaya_arabic"/>
-                    <field name="commune_arabic"/>
-
                 </xpath>
-
+                <xpath expr="//sheet/group/group[1]" position="after">
+                    <group string="Information de Carte Nationale/Permis">
+                        <field name="num_card"/>
+                        <field name="date_card"/>
+                        <field name="wilaya_arabic"/>
+                        <field name="commune_arabic"/>
+                        
+                        
+                    </group>
+          
+                    <group string="Information en arabe ">
+                        <field name="arabic_name"/>
+                        <field name="arabic_surname"/>
+                        <field name="arabic_job"/>
+                        <field name="arabic_birthdate"/>
+                        <field name="street_arabic"/>
+                        
+                    </group>
+                </xpath>
             </field>
         </record>
     </data>

@@ -35,8 +35,12 @@
                             font-size: 25px !important;
                         }
                     </style>
-                    <div style="position:absolute;top: 96mm;left:170mm;">
-                        <span t-if="o.partner_id and o.partner_id.arabic_name" t-esc="o.partner_id.arabic_name" />
+                    <div style="position:absolute;top: 96mm;left:162mm;">
+                        <t t-if="o.partner_id and (o.partner_id.arabic_name or o.partner_id.arabic_surname)" >
+                            <t t-set="name" t-value="str(o.partner_id.arabic_name + ' ' + o.partner_id.arabic_surname)"/>
+                            <span  t-esc="name" />
+                        </t>
+
                         
                     </div>
 
