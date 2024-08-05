@@ -28,12 +28,12 @@
 
                 <xpath expr="//sheet/group/group[1]" position="inside">
 
-                    <label for="ccp" string="Numéro CCP" />
-                    <div class="o_row col-12" name="ccp" >
+                    <label for="ccp" string="Numéro CCP"/>
+                    <div class="o_row col-12" name="ccp">
                         <field name="ccp" class="oe_inline col-8"/>
-                        <span class="oe_inline col-2"> Clé </span>
+                        <span class="oe_inline col-2">Clé</span>
                         <field name="key_ccp" class="col-2"/>
-        
+
                     </div>
                     <field name="start_date"/>
                     <field name="black_list"/>
@@ -41,21 +41,21 @@
                 </xpath>
                 <xpath expr="//sheet/group/group[1]" position="after">
                     <group string="Information de Carte Nationale/Permis">
-                        <field name="num_card"/>
-                        <field name="date_card"/>
-                        <field name="wilaya_arabic"/>
-                        <field name="commune_arabic"/>
-                        
-                        
+                        <field name="num_card" required="is_company"/>
+                        <field name="date_card" required="is_company"/>
+                        <field name="wilaya_arabic" required="is_company"/>
+                        <field name="commune_arabic" required="is_company"/>
+
+
                     </group>
-          
+
                     <group string="Information en arabe ">
-                        <field name="arabic_name"/>
-                        <field name="arabic_surname"/>
-                        <field name="arabic_job"/>
-                        <field name="arabic_birthdate"/>
-                        <field name="street_arabic"/>
-                        
+                        <field name="arabic_name" required="is_company"/>
+                        <field name="arabic_surname" required="is_company"/>
+                        <field name="arabic_job" required="is_company"/>
+                        <field name="arabic_birthdate" required="is_company"/>
+                        <field name="street_arabic" required="is_company"/>
+
                     </group>
                 </xpath>
             </field>
