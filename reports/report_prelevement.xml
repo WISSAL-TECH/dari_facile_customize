@@ -426,6 +426,18 @@
             <field name="binding_view_types">form</field>
             <field name="paperformat_id" ref="dari_facile_customize.custom_landscape_format" />
         </record>
+        <record id="prelevement_report_client" model="ir.actions.report">
+            <field name="name">Demande de Prélèvement</field>
+            <field name="model">res.partner</field>
+            <field name="binding_model_id" ref="model_res_partner"/>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">dari_facile_customize.report_prelevement_client</field>
+            <field name="report_file">dari_facile_customize.report_prelevement_client</field>
+            <!-- <field name="attachment">'contract_dari_facile.pdf'</field>
+            <field name="attachment_use">True</field> -->
+            <field name="binding_view_types">form</field>
+            <field name="paperformat_id" ref="dari_facile_customize.custom_landscape_format" />
+        </record>
 
     </data>
 </odoo>
